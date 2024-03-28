@@ -20,6 +20,7 @@ import ProtectedRoute from './ui/ProtectedRoute';
 import Account from './pages/Account';
 import PostPage from './pages/PostPage';
 import { StyleSheetManager } from 'styled-components';
+import PageNotFound from './pages/PageNotFound';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -46,6 +47,7 @@ const routerDefinition = createRoutesFromElements(
       <Route path='account' element={<Account />} />
     </Route>
     <Route path='signin' element={<Login />} />
+    <Route path='*' element={<PageNotFound />} />
   </Route>
 );
 
