@@ -16,7 +16,7 @@ const StyledResponsiveMenu = styled.ul`
   width: 100%;
   height: 100%;
 
-  padding: 5rem 1rem;
+  padding: 5rem 2rem;
 
   background-color: var(--color-grey-50);
 
@@ -28,14 +28,6 @@ const StyledResponsiveMenu = styled.ul`
   }
 
   & li {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    border-radius: 7px;
-    font-size: 1.7rem;
-    padding: 1rem;
-    line-height: 1.3;
-
     & button {
       width: 100%;
     }
@@ -68,15 +60,15 @@ function ResponsiveMenu({ handleClose }: ResponsiveMenuType) {
       {isAuthenticated ? (
         <>
           <li>
-            <Dashboard />
+            <Dashboard label='Dashboard' />
           </li>
           <li>
-            <Logout />
+            <Logout label='Logout' />
           </li>
         </>
       ) : (
         <li>
-          <Login />
+          <Login label='Sign in' />
         </li>
       )}
     </StyledResponsiveMenu>,

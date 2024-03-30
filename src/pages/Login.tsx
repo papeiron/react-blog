@@ -1,25 +1,38 @@
 import styled from 'styled-components';
 
-import Heading from '../ui/Heading';
 import LoginForm from '../features/authentication/LoginForm';
-import BlogHeader from '../ui/BlogHeader';
+import Logo from '../ui/Logo';
 
 const LoginLayout = styled.div`
   display: grid;
-  grid-template-columns: 50rem;
-  align-content: center;
+  grid-template-columns: minmax(0, 45rem);
   justify-content: center;
+
+  padding: 2rem 5rem 5rem 5rem;
   gap: 2rem;
   background-color: var(--color-grey-50);
   height: 100vh;
+
+  & div {
+    padding-bottom: 2rem;
+  }
+
+  & button {
+    width: 100%;
+  }
+
+  @media only screen and (max-width: 500px) {
+    padding: 2rem 1rem;
+  }
 `;
 
 function Login() {
   return (
     <LoginLayout>
-      <BlogHeader />
-      <Heading as='h1'>Sign in</Heading>
-      <LoginForm />
+      <div>
+        <Logo />
+        <LoginForm />
+      </div>
     </LoginLayout>
   );
 }

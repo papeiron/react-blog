@@ -6,14 +6,20 @@ import ButtonIcon from './ButtonIcon';
 import { RiMailSettingsLine } from 'react-icons/ri';
 
 const StyledLink = styled(Link)`
-  display: block;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1.5rem;
+
+  font-weight: 500;
 `;
 
-function Dashboard() {
+function Dashboard({ label }: { label?: string }) {
   return (
     <ButtonIcon>
-      <StyledLink to='/dashboard' style={{ width: '100%', height: '100%' }}>
+      <StyledLink to='/dashboard'>
         <RiMailSettingsLine />
+        {label}
       </StyledLink>
     </ButtonIcon>
   );

@@ -6,6 +6,7 @@ import Form from '../../ui/Form';
 import FormRow from '../../ui/FormRow';
 import Input from '../../ui/Input';
 import Button from '../../ui/Button';
+import Heading from '../../ui/Heading';
 
 function UpdateAccountForm() {
   const { register, handleSubmit, reset, formState, getValues } = useForm();
@@ -23,6 +24,7 @@ function UpdateAccountForm() {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
+      <Heading as='h2'>Update account</Heading>
       <FormRow
         label='Username'
         error={typeof errors?.username?.message === 'string' ? errors?.username?.message : ''}

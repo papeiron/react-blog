@@ -5,6 +5,7 @@ import Button from '../../ui/Button';
 import Form from '../../ui/Form';
 import FormRow from '../../ui/FormRow';
 import Input from '../../ui/Input';
+import Heading from '../../ui/Heading';
 
 function LoginForm() {
   const [email, setEmail] = useState<string>('');
@@ -34,6 +35,7 @@ function LoginForm() {
 
   return (
     <Form onSubmit={handleSubmit}>
+      <Heading as='h1'>Sign in</Heading>
       <FormRow label='Email' error={emailErr}>
         <Input
           type='email'

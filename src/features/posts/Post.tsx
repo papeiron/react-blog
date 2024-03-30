@@ -64,6 +64,12 @@ const Image = styled.figure`
     object-fit: cover;
     border-radius: 7px;
   }
+
+  @media only screen and (max-width: 992px) {
+    width: 100%;
+    height: auto;
+    position: static;
+  }
 `;
 
 const BackButtonContainer = styled.div`
@@ -84,8 +90,12 @@ const PostMeta = styled.div`
   }
 
   & svg {
-    width: 2rem;
-    height: 2rem;
+    min-width: 2rem;
+    min-height: 2rem;
+  }
+
+  @media only screen and (max-width: 768px) {
+    width: 100%;
   }
 `;
 
@@ -120,11 +130,23 @@ const PostHeaderContainer = styled.div`
       bottom: 0%;
       left: 50%;
       transform: translate(-50%);
+
+      @media only screen and (max-width: 375px) {
+        width: 20rem;
+      }
     }
   }
 
   & > ${Tags} {
     margin: 0 auto;
+  }
+
+  @media only screen and (max-width: 768px) {
+    position: static;
+    max-width: 100%;
+    margin-bottom: 1rem;
+
+    padding: 1rem;
   }
 `;
 
@@ -146,9 +168,11 @@ function Post({ post, isPending }: PostProps) {
         </BackButtonContainer>
       </PostHeader>
 
-      <Image>
-        <img src={coverImage || ''} alt={title || ''} />
-      </Image>
+      <figure>
+        <Image>
+          <img src={coverImage || ''} alt={title || ''} />
+        </Image>
+      </figure>
 
       <PostHeaderContainer>
         <Tags>

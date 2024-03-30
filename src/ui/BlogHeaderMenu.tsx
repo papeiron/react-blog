@@ -13,7 +13,7 @@ const StyledBlogHeaderMenu = styled.ul`
 
   display: flex;
 
-  padding: 1.5rem 4rem;
+  padding: 1.5rem 3rem;
   gap: 1.5rem;
 
   & svg {

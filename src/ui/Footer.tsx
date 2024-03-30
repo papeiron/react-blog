@@ -48,9 +48,19 @@ const FooterMain = styled.ul`
   justify-content: center;
   gap: 5rem;
   margin-bottom: 5rem;
+
+  @media screen and (max-width: 576px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
-const FooterMenuItem = styled(Link)``;
+const FooterMenuItem = styled(Link)`
+  &:hover {
+    color: var(--color-grey-900);
+    text-decoration: underline;
+  }
+`;
 
 const FooterBottom = styled.div`
   background-color: var(--color-grey-900);

@@ -11,7 +11,7 @@ const StyledResponsiveMenu = styled.ul`
 
   right: 0;
   top: 0;
-  padding: 1.5rem 4rem;
+  padding: 1.5rem 3rem;
 
   @media screen and (max-width: 576px) {
     display: list-item;
@@ -20,8 +20,8 @@ const StyledResponsiveMenu = styled.ul`
 
 const ResponsiveMenuToggleButton = styled(ButtonIcon)`
   & svg {
-    width: 2.4rem;
-    height: 2.4rem;
+    width: 3rem;
+    height: 3rem;
     color: var(--color-grey-400);
     transition: all 0.3s;
   }

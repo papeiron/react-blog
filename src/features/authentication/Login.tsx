@@ -6,15 +6,22 @@ import ButtonIcon from '../../ui/ButtonIcon';
 import { HiOutlineUser } from 'react-icons/hi';
 
 const StyledLink = styled(Link)`
-  display: block;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1.5rem;
+
+  font-weight: 500;
 `;
 
-function Login() {
+function Login({ label }: { label?: string }) {
   return (
     <ButtonIcon>
-      <StyledLink to='/signin'>
-        <HiOutlineUser />
-      </StyledLink>
+      <span>
+        <StyledLink to='/signin'>
+          <HiOutlineUser /> {label}
+        </StyledLink>
+      </span>
     </ButtonIcon>
   );
 }

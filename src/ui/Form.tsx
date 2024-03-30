@@ -9,6 +9,11 @@ const Form = styled.form`
 
   overflow: hidden;
   font-size: 1.4rem;
+
+  @media only screen and (max-width: 768px) {
+    border: none;
+    background-color: inherit;
+  }
 `;
 
 export default Form;

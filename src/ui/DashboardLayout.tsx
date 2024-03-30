@@ -25,6 +25,10 @@ const StyledDashboardLayout = styled.div`
   & > *:nth-of-type(3) {
     grid-column: span 2;
   }
+
+  @media only screen and (max-width: 1200px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 function DashboardLayout() {

@@ -13,7 +13,7 @@ const ButtonIcon = styled.button`
   }
 
   &:hover svg {
-    color: var(--color-grey-800);
+    color: var(--color-grey-00);
   }
 
   & svg {

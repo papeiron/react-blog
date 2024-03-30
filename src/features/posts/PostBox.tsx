@@ -74,9 +74,11 @@ function PostBox({ post }: PostProps) {
 
   return (
     <StyledPostBox>
-      <Link to={`/blog/${slug}`}>
-        <StyledImage src={coverImage as string} alt={title as string} />
-      </Link>
+      <figure>
+        <Link to={`/blog/${slug}`}>
+          <StyledImage src={coverImage as string} alt={title as string} />
+        </Link>
+      </figure>
 
       <Content>
         <Heading as='h2'>

@@ -14,7 +14,6 @@ function Account() {
     <AccountLayout>
       <Heading as='h1'>Account settings</Heading>
 
-      <Heading as='h3'>Update account</Heading>
       <UpdateAccountForm />
     </AccountLayout>
   );

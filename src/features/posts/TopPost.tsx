@@ -8,6 +8,10 @@ const StyledRecentPost = styled.div`
   gap: 1rem;
 
   max-width: 38rem;
+
+  @media only screen and (max-width: 1200px) {
+    width: auto;
+  }
 `;
 
 const Image = styled.img`
