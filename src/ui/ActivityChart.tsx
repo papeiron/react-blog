@@ -32,6 +32,21 @@ type ActivityChartType = {
   posts: PostType[] | undefined;
 };
 
+const months = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December'
+];
+
 function ActivityChart({ posts }: ActivityChartType) {
   const currentDate = new Date();
 
@@ -48,21 +63,6 @@ function ActivityChart({ posts }: ActivityChartType) {
       (a, b) =>
         getMonth(parseISO(a?.created_at as string)) - getMonth(parseISO(b?.created_at as string))
     );
-
-  const months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December'
-  ];
 
   let obj: { [key: string]: number } = {};
   postsDiffMonths?.forEach((post) => {

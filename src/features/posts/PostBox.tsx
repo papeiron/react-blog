@@ -76,7 +76,7 @@ function PostBox({ post }: PostProps) {
     <StyledPostBox>
       <figure>
         <Link to={`/blog/${slug}`}>
-          <StyledImage src={coverImage as string} alt={title as string} />
+          <StyledImage src={coverImage as string} alt={title as string} loading='lazy' />
         </Link>
       </figure>
 

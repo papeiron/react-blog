@@ -18,14 +18,8 @@ const Main = styled.main`
 `;
 
 const Content = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 8rem;
   margin: 0 auto;
-
-  @media screen and (max-width: 768px) {
-    grid-template-columns: 1fr;
-  }
+  width: 100%;
 `;
 
 const Container = styled.div`

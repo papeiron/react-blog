@@ -2,9 +2,9 @@ import styled from 'styled-components';
 
 import { usePosts } from './usePosts';
 
-import MiniSpinner from '../../ui/MiniSpinner';
 import PostSuggestionCard from './PostSuggestionCard';
 import Heading from '../../ui/Heading';
+import PostSuggestionSkeleton from '../../ui/PostSuggestionSkeleton';
 
 const StyledPostSuggestions = styled.div`
   display: grid;
@@ -19,18 +19,22 @@ const StyledPostSuggestions = styled.div`
   }
 `;
 
-function PostSuggestions() {
-  const { posts, isPending } = usePosts(2);
+const postBypage = 2;
 
-  if (isPending) return <MiniSpinner />;
+function PostSuggestions() {
+  const { posts, isPending } = usePosts(postBypage);
+
+  const skeletons = Array.from({ length: postBypage }).map((_, index) => (
+    <PostSuggestionSkeleton key={index} />
+  ));
 
   return (
     <div>
       <Heading as='h2'>Suggestion Posts</Heading>
       <StyledPostSuggestions>
-        {posts?.map((post) => (
-          <PostSuggestionCard key={post.id} post={post} />
-        ))}
+        {isPending
+          ? skeletons
+          : posts?.map((post) => <PostSuggestionCard key={post.id} post={post} />)}
       </StyledPostSuggestions>
     </div>
   );

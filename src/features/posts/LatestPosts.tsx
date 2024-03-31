@@ -1,9 +1,12 @@
 import styled from 'styled-components';
-import PostBox from './PostBox';
+import 'react-loading-skeleton/dist/skeleton.css';
+
 import { usePosts } from './usePosts';
-import MiniSpinner from '../../ui/MiniSpinner';
+
+import PostBox from './PostBox';
 import Pagination from '../../ui/Pagination';
-import { PostWithTags } from '../../types/types';
+import { PostWithTags as PostWithTagsType } from '../../types/types';
+import PostBoxSkeleton from '../../ui/PostBoxSkeleton';
 
 const List = styled.div`
   display: grid;
@@ -13,23 +16,24 @@ const List = styled.div`
 
   margin-bottom: 5rem;
 `;
-// PostWithTags
+
 const postByPage = 4;
+
 function LatestPosts() {
   const { posts, isPending, count } = usePosts(postByPage) as {
-    posts: PostWithTags[];
+    posts: PostWithTagsType[];
     isPending: boolean;
     count: number;
   };
 
-  if (isPending) return <MiniSpinner />;
+  const skeletons = Array.from({ length: postByPage }).map((_, index) => (
+    <PostBoxSkeleton key={index} />
+  ));
 
   return (
     <section>
       <List>
-        {posts?.map((post) => (
-          <PostBox key={post.id} post={post} />
-        ))}
+        {isPending ? skeletons : posts?.map((post) => <PostBox key={post.id} post={post} />)}
       </List>
       <Pagination
         detailsTwo={true}

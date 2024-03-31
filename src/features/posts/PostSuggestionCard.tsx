@@ -34,7 +34,7 @@ function PostSuggestionCard({ post }: { post: PostSuggestionCardProps }) {
   return (
     <StyledPostSuggestionCard>
       <Link to={`/blog/${slug}`} state={{ post }}>
-        <StyledImage src={coverImage!} alt={title!} />
+        <StyledImage loading='lazy' src={coverImage!} alt={title!} width='200px' height='200px' />
       </Link>
 
       <Content>

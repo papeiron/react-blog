@@ -1,18 +1,20 @@
 import styled from 'styled-components';
 
+import { countWords, secondDateFormatter } from '../../utils/helpers';
+
 import SoftText from '../../ui/SoftText';
 import BackButton from '../../ui/BackButton';
-import { countWords, secondDateFormatter } from '../../utils/helpers';
 import { PostWithTags, Tag as TagType } from '../../types/types';
 import Tag from '../../ui/Tag';
 import Heading from '../../ui/Heading';
 import Tags from '../../ui/Tags';
 import MDEditor from '@uiw/react-md-editor';
+import Skeleton from 'react-loading-skeleton';
 
 import { FcBusinessman } from 'react-icons/fc';
 import { FcAlarmClock } from 'react-icons/fc';
 import { FcCalendar } from 'react-icons/fc';
-import MiniSpinner from '../../ui/MiniSpinner';
+import { usePost } from './usePost';
 
 const StyledPost = styled.div`
   display: flex;
@@ -25,14 +27,14 @@ const PostHeader = styled.div`
   display: flex;
   justify-content: flex-end;
   position: relative;
+
+  @media only screen and (max-width: 1200px) {
+    position: static;
+  }
 `;
 
 const StyledMarkdown = styled(MDEditor.Markdown)`
   background-color: var(--color-grey-0);
-  font-family: inherit;
-  color: inherit;
-
-  line-height: 1.9;
 
   & img {
     border-radius: 7px;
@@ -45,10 +47,6 @@ const StyledMarkdown = styled(MDEditor.Markdown)`
   & li {
     list-style-type: disc;
     color: var(--color-text);
-  }
-
-  & blockquote {
-    border-color: var(--color-red-100);
   }
 `;
 
@@ -75,6 +73,11 @@ const Image = styled.figure`
 const BackButtonContainer = styled.div`
   position: absolute;
   left: -30%;
+
+  @media only screen and (max-width: 1200px) {
+    top: 2%;
+    left: 3rem;
+  }
 `;
 
 const PostMeta = styled.div`
@@ -119,7 +122,6 @@ const PostHeaderContainer = styled.div`
   & > ${Heading} {
     padding-bottom: 2rem;
     position: relative;
-    /* border-bottom: 0.5px solid var(--color-bg); */
 
     &:after {
       content: '';
@@ -150,15 +152,8 @@ const PostHeaderContainer = styled.div`
   }
 `;
 
-type PostProps = {
-  post: PostWithTags;
-  isPending: boolean;
-};
-
-function Post({ post, isPending }: PostProps) {
-  if (isPending) return <MiniSpinner />;
-
-  const { created_at, title, content, coverImage, author, tags } = post;
+function Post() {
+  let { post, isPending } = usePost() as { post: PostWithTags; isPending: boolean };
 
   return (
     <StyledPost>
@@ -170,38 +165,71 @@ function Post({ post, isPending }: PostProps) {
 
       <figure>
         <Image>
-          <img src={coverImage || ''} alt={title || ''} />
+          {isPending ? (
+            <Skeleton height={450} />
+          ) : (
+            <img src={post.coverImage || ''} alt={post.title || ''} />
+          )}
         </Image>
       </figure>
 
       <PostHeaderContainer>
         <Tags>
-          {tags?.map((tag: TagType) => (
-            <Tag key={tag.id} tag={tag} />
-          ))}
+          {isPending ? (
+            <>
+              <Skeleton height={30} width={72} />
+              <Skeleton height={30} width={72} />
+            </>
+          ) : (
+            post.tags?.map((tag: TagType) => <Tag key={tag.id} tag={tag} />)
+          )}
         </Tags>
 
-        <Heading as='h5'>{title}</Heading>
+        {isPending ? <Skeleton height={50} /> : <Heading as='h5'>{post.title}</Heading>}
 
         <PostMeta>
-          <div>
-            <FcBusinessman />
-            <SoftText>{author}</SoftText>
-          </div>
+          {isPending ? (
+            <Skeleton height={24} width={70} />
+          ) : (
+            <div>
+              <FcBusinessman />
+              <SoftText>{post.author}</SoftText>
+            </div>
+          )}
           •
-          <div>
-            <FcCalendar />
-            <SoftText>{secondDateFormatter(created_at)}</SoftText>
-          </div>
+          {isPending ? (
+            <Skeleton height={24} width={70} />
+          ) : (
+            <div>
+              <FcCalendar />
+              <SoftText>{secondDateFormatter(post.created_at)}</SoftText>
+            </div>
+          )}
           •
-          <div>
-            <FcAlarmClock />
-            <SoftText>{countWords(content || '')} mins</SoftText>
-          </div>
+          {isPending ? (
+            <Skeleton height={24} width={70} />
+          ) : (
+            <div>
+              <FcAlarmClock />
+              <SoftText>{countWords(post.content || '')} mins</SoftText>
+            </div>
+          )}
         </PostMeta>
       </PostHeaderContainer>
 
-      <StyledMarkdown source={content || ''} />
+      {isPending ? (
+        <Skeleton height={1000} width={'100%'} />
+      ) : (
+        <StyledMarkdown
+          source={post.content || ''}
+          style={{
+            backgroundColor: 'inherit',
+            color: 'var(--color-text)',
+            lineHeight: 1.9,
+            fontFamily: 'inherit'
+          }}
+        />
+      )}
     </StyledPost>
   );
 }

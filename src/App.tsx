@@ -7,20 +7,31 @@ import {
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Toaster } from 'react-hot-toast';
-
-import HomePage from './pages/HomePage';
-import Dashboard from './pages/Dashboard';
-import Posts from './pages/Posts';
-import Tags from './pages/Tags';
-import AppLayout from './ui/AppLayout';
-
 import GlobalStyles from './styles/GlobalStyle';
-import Login from './pages/Login';
-import ProtectedRoute from './ui/ProtectedRoute';
-import Account from './pages/Account';
-import PostPage from './pages/PostPage';
 import { StyleSheetManager } from 'styled-components';
-import PageNotFound from './pages/PageNotFound';
+import { Suspense, lazy } from 'react';
+
+// import HomePage from './pages/HomePage';
+// import Dashboard from './pages/Dashboard';
+// import Posts from './pages/Posts';
+// import Tags from './pages/Tags';
+// import Login from './pages/Login';
+// import Account from './pages/Account';
+// import PostPage from './pages/PostPage';
+// import PageNotFound from './pages/PageNotFound';
+
+const HomePage = lazy(() => import('./pages/HomePage'));
+const Dashboard = lazy(() => import('./pages/Dashboard'));
+const Posts = lazy(() => import('./pages/Posts'));
+const Tags = lazy(() => import('./pages/Tags'));
+const Login = lazy(() => import('./pages/Login'));
+const Account = lazy(() => import('./pages/Account'));
+const PostPage = lazy(() => import('./pages/PostPage'));
+const PageNotFound = lazy(() => import('./pages/PageNotFound'));
+
+import AppLayout from './ui/AppLayout';
+import ProtectedRoute from './ui/ProtectedRoute';
+import FullPageSpinner from './ui/FullPageSpinner';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -61,7 +72,9 @@ function App() {
           <ReactQueryDevtools />
           <GlobalStyles />
 
-          <RouterProvider router={router} />
+          <Suspense fallback={<FullPageSpinner />}>
+            <RouterProvider router={router} />
+          </Suspense>
           <Toaster
             position='top-right'
             gutter={12}
