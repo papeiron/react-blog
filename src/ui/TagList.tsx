@@ -10,9 +10,11 @@ const StyledTagList = styled.ul`
 
   & div {
     display: flex;
-    gap: 2rem;
+
     align-items: flex-start;
     flex-wrap: wrap;
+    column-gap: 1rem;
+    row-gap: 0.5rem;
   }
 `;
 
@@ -80,18 +82,21 @@ function TagList() {
 
       <StyledTagList>
         <P>6 months - 1 year</P>
-
-        {sixOne?.map((tag) => (
-          <Tag key={tag.id} tag={tag} withDel={true} count={true} />
-        ))}
+        <div>
+          {sixOne?.map((tag) => (
+            <Tag key={tag.id} tag={tag} withDel={true} count={true} />
+          ))}
+        </div>
       </StyledTagList>
 
       <StyledTagList>
         <P>1 year - 5 years</P>
 
-        {oneFive?.map((tag) => (
-          <Tag key={tag.id} tag={tag} withDel={true} count={true} />
-        ))}
+        <div>
+          {oneFive?.map((tag) => (
+            <Tag key={tag.id} tag={tag} withDel={true} count={true} />
+          ))}
+        </div>
       </StyledTagList>
     </>
   );

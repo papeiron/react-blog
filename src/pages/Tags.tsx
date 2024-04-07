@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import styled from 'styled-components';
 
 import Heading from '../ui/Heading';
 import Row from '../ui/Row';
@@ -6,24 +7,24 @@ import TagList from '../ui/TagList';
 import AddTag from '../features/tags/AddTag';
 import TagTableOperations from '../features/tags/TagTableOperations';
 import TagTable from '../features/tags/TagTable';
-import BasicModal from '../ui/BasicModal';
 import Button from '../ui/Button';
 import Box from '../ui/Box';
+import ButtonIcon from '../ui/ButtonIcon';
 
 import { MdOutlineRemoveRedEye } from 'react-icons/md';
-import ButtonIcon from '../ui/ButtonIcon';
-import styled from 'styled-components';
 
 const ChangeView = styled.div`
   margin: 0 0.5rem 0 auto;
+
+  & svg {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
 `;
 
 function Tags() {
-  const [openModal, setOpenModal] = useState(false);
+  const [isTagFormOpen, setIsTagFormOpen] = useState(false);
   const [tableView, setTableView] = useState(false);
-
-  const handleOpen = () => setOpenModal(true);
-  const handleClose = () => setOpenModal(false);
 
   return (
     <>
@@ -45,15 +46,12 @@ function Tags() {
       )}
       <Row>
         {tableView && <TagTable />}
-        <Heading as='h2'>Add a new tag</Heading>
         <div>
-          <Button el='button' onClick={handleOpen}>
+          <Button el='button' onClick={() => setIsTagFormOpen((prev) => !prev)}>
             Add a tag
           </Button>
         </div>
-        <BasicModal open={openModal} onClose={handleClose}>
-          <AddTag />
-        </BasicModal>
+        {isTagFormOpen && <AddTag />}
       </Row>
     </>
   );

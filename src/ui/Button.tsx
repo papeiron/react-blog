@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef, ReactNode } from 'react';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 type ButtonColorType = {
   [key: string]: string;
@@ -11,25 +11,29 @@ const buttonColor: ButtonColorType = {
   green: 'var(--color-green-400)'
 };
 
+const commonStyles = css`
+  border-radius: var(--border-radius-xlg);
+  color: var(--color-grey-50);
+  box-shadow: var(--shadow-sm);
+  padding: 1rem 1.6rem;
+  font-size: 1.4rem;
+  min-width: 10rem;
+  border: none;
+
+  transition: all 0.15s ease;
+  &:active {
+    transform: translateY(3%);
+  }
+`;
+
 type StyledButtonType = {
   btntype: string | undefined;
 };
 
 const StyledButton = styled.button<StyledButtonType>`
-  border-radius: var(--border-radius-sm);
-  color: white;
   background-color: ${(props) =>
     props.btntype ? buttonColor[props.btntype] : buttonColor['green']};
-  border: none;
-  padding: 1rem 1.6rem;
-  font-size: 1.4rem;
-  min-width: 10rem;
-
-  transition: all 0.15s ease;
-
-  &:active {
-    transform: translateY(3%);
-  }
+  ${commonStyles}
 `;
 
 type StyledAnchorType = {
@@ -37,20 +41,9 @@ type StyledAnchorType = {
 };
 
 const StyledLink = styled(Link)<StyledAnchorType>`
-  border-radius: var(--border-radius-sm);
-  color: white;
   background-color: ${(props) =>
     props.btnType ? buttonColor[props.btnType] : buttonColor['green']};
-  border: none;
-  padding: 1rem 1.6rem;
-  font-size: 1.4rem;
-  min-width: 10rem;
-
-  transition: all 0.15s ease;
-
-  &:active {
-    transform: translateY(3%);
-  }
+  ${commonStyles}
 `;
 
 type ButtonProps = {
@@ -79,7 +72,7 @@ function Button({ el, btntype, children, ...props }: ButtonProps | AnchorProps) 
     const buttonProps = props as ButtonProps;
 
     return (
-      <StyledButton btntype={btntype} {...buttonProps}>
+      <StyledButton role='button' btntype={btntype} {...buttonProps}>
         {children}
       </StyledButton>
     );

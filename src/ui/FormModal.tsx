@@ -5,7 +5,9 @@ import ModalBox from './ModalBox';
 import { Modal, ModalProps } from '@mui/material';
 
 const StyledFormModal = styled(Modal)`
-  /* overflow-y: scroll; */
+  width: 60.5%;
+  margin: 0 auto;
+  border-radius: var(--border-radius-md);
 `;
 
 const StyledModalBox = styled(ModalBox)`

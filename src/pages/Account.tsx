@@ -5,7 +5,7 @@ import UpdateAccountForm from '../features/settings/UpdateAccountForm';
 
 const AccountLayout = styled.div`
   display: grid;
-  grid-template-columns: 48rem;
+  grid-template-columns: 60rem;
   /* justify-content: center; */
 `;
 

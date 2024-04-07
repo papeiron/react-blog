@@ -56,7 +56,7 @@ function LoginForm() {
           wideness='100%'
         />
       </FormRow>
-      <Button el='button' disabled={isLogging}>
+      <Button el='button' disabled={isLogging} aria-label='Sign in'>
         Sign in
       </Button>
     </Form>

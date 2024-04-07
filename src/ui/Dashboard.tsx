@@ -17,7 +17,7 @@ const StyledLink = styled(Link)`
 function Dashboard({ label }: { label?: string }) {
   return (
     <ButtonIcon>
-      <StyledLink to='/dashboard'>
+      <StyledLink to='/dashboard' aria-label='Go Dashboard'>
         <RiMailSettingsLine />
         {label}
       </StyledLink>

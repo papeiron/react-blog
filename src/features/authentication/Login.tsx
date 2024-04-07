@@ -18,7 +18,7 @@ function Login({ label }: { label?: string }) {
   return (
     <ButtonIcon>
       <span>
-        <StyledLink to='/signin'>
+        <StyledLink to='/signin' aria-label='Go to Sign in Page'>
           <HiOutlineUser /> {label}
         </StyledLink>
       </span>

@@ -5,6 +5,11 @@ import { Controller, useFormContext } from 'react-hook-form';
 import { useTags } from './useTags';
 
 import MiniSpinner from '../../ui/MiniSpinner';
+import styled from 'styled-components';
+
+const StyledReactTags = styled(ReactTags)`
+  /* display: flex; */
+`;
 
 type SelectedTags = Tag;
 
@@ -38,7 +43,7 @@ function TagInput({ isCreating }: TagInputProps) {
       defaultValue={[]}
       rules={{ required: 'This field is required.' }}
       render={({ field }) => (
-        <ReactTags
+        <StyledReactTags
           labelText=''
           selected={field.value}
           suggestions={suggestions}

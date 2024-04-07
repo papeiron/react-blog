@@ -18,7 +18,7 @@ function Logout({ label }: { label?: string }) {
   const { logout, isPending: isLoggingOut } = useLogout();
 
   return (
-    <ButtonIcon disabled={isLoggingOut} onClick={() => logout()}>
+    <ButtonIcon disabled={isLoggingOut} onClick={() => logout()} aria-label='Logout'>
       <Span>
         <MdExitToApp />
         {label}

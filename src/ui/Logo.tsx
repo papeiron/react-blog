@@ -16,7 +16,7 @@ function Logo() {
   return (
     <StyledLogo>
       <Link to='/'>
-        <Img src={src} />
+        <Img src={src} alt='logo' />
       </Link>
     </StyledLogo>
   );

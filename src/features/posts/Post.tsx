@@ -8,13 +8,16 @@ import { PostWithTags, Tag as TagType } from '../../types/types';
 import Tag from '../../ui/Tag';
 import Heading from '../../ui/Heading';
 import Tags from '../../ui/Tags';
-import MDEditor from '@uiw/react-md-editor';
 import Skeleton from 'react-loading-skeleton';
 
 import { FcBusinessman } from 'react-icons/fc';
 import { FcAlarmClock } from 'react-icons/fc';
 import { FcCalendar } from 'react-icons/fc';
 import { usePost } from './usePost';
+import { EditorContent, useEditor } from '@tiptap/react';
+
+import { useEffect } from 'react';
+import { extensions } from '../../ui/TiptapEditor/TiptapEditor';
 
 const StyledPost = styled.div`
   display: flex;
@@ -30,23 +33,6 @@ const PostHeader = styled.div`
 
   @media only screen and (max-width: 1200px) {
     position: static;
-  }
-`;
-
-const StyledMarkdown = styled(MDEditor.Markdown)`
-  background-color: var(--color-grey-0);
-
-  & img {
-    border-radius: 7px;
-  }
-
-  & p {
-    color: var(--color-text);
-  }
-
-  & li {
-    list-style-type: disc;
-    color: var(--color-text);
   }
 `;
 
@@ -152,8 +138,25 @@ const PostHeaderContainer = styled.div`
   }
 `;
 
+const Content = styled.div``;
+
 function Post() {
   let { post, isPending } = usePost() as { post: PostWithTags; isPending: boolean };
+
+  console.log(post);
+
+  const editor = useEditor({
+    editable: false,
+    extensions: extensions
+  });
+
+  useEffect(() => {
+    if (editor) {
+      setTimeout(() => {
+        editor.commands.setContent(post?.content || '');
+      });
+    }
+  }, [post, editor]);
 
   return (
     <StyledPost>
@@ -220,15 +223,9 @@ function Post() {
       {isPending ? (
         <Skeleton height={1000} width={'100%'} />
       ) : (
-        <StyledMarkdown
-          source={post.content || ''}
-          style={{
-            backgroundColor: 'inherit',
-            color: 'var(--color-text)',
-            lineHeight: 1.9,
-            fontFamily: 'inherit'
-          }}
-        />
+        <Content>
+          <EditorContent editor={editor} />
+        </Content>
       )}
     </StyledPost>
   );

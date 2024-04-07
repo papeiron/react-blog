@@ -19,6 +19,9 @@ import Heading from '../../ui/Heading';
 import { PostWithTags, Tag as TagType } from '../../types/types';
 import { Menu, MenuItem } from '@mui/material';
 
+import { CiEdit } from 'react-icons/ci';
+import { PiTrashLight } from 'react-icons/pi';
+
 import { SlOptionsVertical } from 'react-icons/sl';
 
 const Buttons = styled.div`
@@ -43,7 +46,33 @@ const StyledMenu = styled(Menu)`
 `;
 
 const StyledMenuItem = styled(MenuItem)`
-  padding: 1rem 3rem;
+  padding: 1rem 4rem 1rem 1.2rem;
+  font-size: 1.2rem;
+  border-bottom: 1px solid var(--color-grey-100);
+
+  & svg {
+    width: 2rem;
+    height: 2rem;
+    color: var(--color-grey-600);
+    margin-right: 1rem;
+  }
+`;
+
+const StyledMenuItemWithoutBorder = styled(StyledMenuItem)`
+  border-bottom: none;
+`;
+
+const EditPostFormContainer = styled.div`
+  width: 100%;
+  margin: 0 auto;
+
+  & ${Heading} {
+    padding: 0 4rem;
+  }
+
+  & form {
+    border: none;
+  }
 `;
 
 function PostRow({ post, index }: PostRowProps) {
@@ -111,14 +140,29 @@ function PostRow({ post, index }: PostRowProps) {
           <SlOptionsVertical />
         </OptionsButton>
 
-        <StyledMenu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleMenuClose}>
-          <StyledMenuItem onClick={handleModalOpen}>Edit</StyledMenuItem>
-          <StyledMenuItem onClick={handleDeleteModalOpen}>Delete</StyledMenuItem>
+        <StyledMenu
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={handleMenuClose}
+          anchorOrigin={{
+            vertical: 17,
+            horizontal: -107
+          }}
+        >
+          <StyledMenuItem onClick={handleModalOpen}>
+            <CiEdit />
+            <p>Edit</p>
+          </StyledMenuItem>
+          <StyledMenuItemWithoutBorder onClick={handleDeleteModalOpen}>
+            <PiTrashLight /> <p>Delete</p>
+          </StyledMenuItemWithoutBorder>
         </StyledMenu>
 
         <FormModal open={modalOpen} onClose={handleModalClose}>
-          <Heading as='h1'>Edit Form</Heading>
-          <CreatePostForm postToEdit={post} tagsToEdit={tags} />
+          <EditPostFormContainer>
+            <Heading as='h1'>Edit Form</Heading>
+            <CreatePostForm postToEdit={post} tagsToEdit={tags} />
+          </EditPostFormContainer>
         </FormModal>
 
         <BasicModal width='40rem' open={deleteModalOpen} onClose={handleDeleteModalClose}>

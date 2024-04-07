@@ -32,6 +32,7 @@ const PageNotFound = lazy(() => import('./pages/PageNotFound'));
 import AppLayout from './ui/AppLayout';
 import ProtectedRoute from './ui/ProtectedRoute';
 import FullPageSpinner from './ui/FullPageSpinner';
+import AddPost from './features/posts/AddPost';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -56,6 +57,7 @@ const routerDefinition = createRoutesFromElements(
       <Route path='posts' element={<Posts />} />
       <Route path='tags' element={<Tags />} />
       <Route path='account' element={<Account />} />
+      <Route path='newpost' element={<AddPost />} />
     </Route>
     <Route path='signin' element={<Login />} />
     <Route path='*' element={<PageNotFound />} />

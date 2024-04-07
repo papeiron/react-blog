@@ -10,7 +10,12 @@ type BasicModalProps = {
 
 function BasicModal({ children, width, ...props }: BasicModalProps) {
   return (
-    <Modal {...props} aria-labelledby='modal-title' aria-describedby='modal-description'>
+    <Modal
+      style={{ zIndex: 9999 }}
+      {...props}
+      aria-labelledby='modal-title'
+      aria-describedby='modal-description'
+    >
       <ModalBox width={width}>{children}</ModalBox>
     </Modal>
   );

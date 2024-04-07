@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import slug from 'slug';
-
-import MDEditor from '@uiw/react-md-editor';
+import { Controller, FieldValues, FormProvider, useForm } from 'react-hook-form';
 
 import { useUser } from '../authentication/useUser';
 import { useEditPost } from './useEditPost';
@@ -9,35 +8,31 @@ import { useEditPost } from './useEditPost';
 import Input from '../../ui/Input';
 import Form from '../../ui/Form';
 import FormRow from '../../ui/FormRow';
-import ImageUrlGetter from '../../ui/ImageUrlGetter';
 import Button from '../../ui/Button';
 import TagInput from '../tags/TagInput';
 import { useCreatePost } from './useCreatePost';
-import FileInput from '../../ui/FileInput';
+
 import { Post as PostType, Tag as TagType } from '../../types/types';
 import TextArea from '../../ui/TextArea';
 import { Tag } from 'react-tag-autocomplete';
-import { Controller, FieldValues, FormProvider, useForm } from 'react-hook-form';
+import TiptapEditor from '../../ui/TiptapEditor/TiptapEditor';
+import { FilePond, registerPlugin } from 'react-filepond';
 
-const StyledMDEditor = styled(MDEditor)`
-  height: 45rem !important;
-
-  &.w-md-editor-fullscreen {
-    height: 100vh !important;
-  }
-`;
+import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation';
+import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
+import { ImageContainer } from '../../ui/TiptapEditor/Extensions/BubbleMenu/Image';
 
 const StyledCreatePostForm = styled.div`
   position: relative;
 `;
 
-const CurrentImageContainerOnEdit = styled.div`
-  width: 15rem;
-  margin-top: 0.5rem;
+const StyledImageContainer = styled(ImageContainer)`
+  width: 100%;
+  min-height: 20rem;
+  max-height: auto;
 
-  img {
-    width: 100%;
-    height: 100%;
+  & .filepond--drop-label {
+    height: 20rem;
   }
 `;
 
@@ -46,12 +41,13 @@ type CreatePostFormProps = {
   tagsToEdit?: TagType[];
 };
 
+registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
+
 function CreatePostForm({ postToEdit, tagsToEdit }: CreatePostFormProps) {
   const { createPost, isPending: isCreating } = useCreatePost();
   const { editPost, isPostEditing } = useEditPost();
   const { user } = useUser();
   const isEditingSession = Boolean(postToEdit?.id);
-
   const methods = useForm({
     defaultValues: isEditingSession
       ? {
@@ -74,7 +70,7 @@ function CreatePostForm({ postToEdit, tagsToEdit }: CreatePostFormProps) {
   const { errors } = formState;
 
   function onSubmit(data: FieldValues) {
-    const img = data.coverImage ? data.coverImage[0] : postToEdit?.coverImage;
+    const img = data.coverImage[0];
 
     if (isEditingSession) {
       const tagIds = [];
@@ -132,7 +128,7 @@ function CreatePostForm({ postToEdit, tagsToEdit }: CreatePostFormProps) {
             <Input
               type='text'
               id='title'
-              wideness='50%'
+              wideness='100%'
               disabled={isCreating || isPostEditing}
               {...register('title', { required: 'This field is required.' })}
             />
@@ -142,28 +138,35 @@ function CreatePostForm({ postToEdit, tagsToEdit }: CreatePostFormProps) {
             <TextArea
               id='summary'
               disabled={isCreating || isPostEditing}
-              rows={4}
-              wideness='50%'
+              rows={7}
+              wideness='100%'
               {...register('summary', { required: 'This field is required.' })}
             />
           </FormRow>
 
           <FormRow label='Add a cover photo' error={errors?.coverImage?.message}>
-            <>
-              <FileInput
-                id='coverImage'
-                accept='image/*'
-                disabled={isPostEditing}
-                {...register('coverImage', {
-                  required: isEditingSession ? false : 'This field is required.'
-                })}
-              />
-              {isEditingSession && (
-                <CurrentImageContainerOnEdit>
-                  <img src={getValues().coverImage as string} alt='Cover Image' />
-                </CurrentImageContainerOnEdit>
+            <Controller
+              name='coverImage'
+              control={control}
+              rules={{ required: 'This field is required.' }}
+              render={({ field }) => (
+                <StyledImageContainer>
+                  <FilePond
+                    files={field.value as any}
+                    acceptedFileTypes={['image/*']}
+                    maxFiles={1}
+                    fileSizeBase={4096}
+                    onupdatefiles={(fileItems) => {
+                      field.onChange(fileItems.map((fileItem) => fileItem.file));
+                    }}
+                    labelIdle={`
+            Drag & Drop your files or
+            <span className='filepond--label-action'>Browse</span>
+            `}
+                  />
+                </StyledImageContainer>
               )}
-            </>
+            />
           </FormRow>
 
           <FormRow label='Tags' error={errors?.tags?.message}>
@@ -177,11 +180,7 @@ function CreatePostForm({ postToEdit, tagsToEdit }: CreatePostFormProps) {
               defaultValue=''
               rules={{ required: 'This field is required.' }}
               render={({ field }) => (
-                <StyledMDEditor
-                  value={field.value as string}
-                  onChange={(value) => field.onChange(value)}
-                  aria-disabled={isCreating || isPostEditing}
-                />
+                <TiptapEditor onChange={field.onChange} defaultValue={field.value} />
               )}
             />
           </FormRow>
@@ -191,7 +190,6 @@ function CreatePostForm({ postToEdit, tagsToEdit }: CreatePostFormProps) {
           </Button>
         </Form>
       </FormProvider>
-      <ImageUrlGetter />
     </StyledCreatePostForm>
   );
 }
