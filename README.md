@@ -17,13 +17,20 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-![supasnap-2024-04-16-06 10 01](https://github.com/papeiron/react-blog/assets/151983680/6e0856be-9511-445c-9f8d-b60d8cd32ef3)
+<div align='left'>
+  
+<img src="https://github.com/papeiron/react-blog/assets/151983680/6e0856be-9511-445c-9f8d-b60d8cd32ef3" width="600" height="330">
+<br/>
+<img src="https://github.com/papeiron/react-blog/assets/151983680/348dddcb-c772-4b18-8754-559e38e62f75" width="600" height="330">
+</div>
 
-![supasnap-2024-04-16-05 54 35](https://github.com/papeiron/react-blog/assets/151983680/348dddcb-c772-4b18-8754-559e38e62f75)
+<!-- ![supasnap-2024-04-16-05 54 35](https://github.com/papeiron/react-blog/assets/151983680/348dddcb-c772-4b18-8754-559e38e62f75) -->
 
 
 ## Usage
-![f13ec368-cc5c-4767-bdd9-bb75283e6cc9](https://github.com/papeiron/react-blog/assets/151983680/4e549542-e582-433b-9e1c-82bcd1c14927)
+<div align='left'>
+  <img src="https://github.com/papeiron/react-blog/assets/151983680/4e549542-e582-433b-9e1c-82bcd1c14927" width="600" height="330">
+</div>
 
 
 ## Built With
