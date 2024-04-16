@@ -29,7 +29,7 @@
 
 ## Usage
 <div align='left'>
-  <img src="https://github.com/papeiron/react-blog/assets/151983680/4e549542-e582-433b-9e1c-82bcd1c14927" width="600" height="330">
+  <img src="https://github.com/papeiron/react-blog/assets/151983680/4e549542-e582-433b-9e1c-82bcd1c14927" width="700" height="360">
 </div>
 
 
