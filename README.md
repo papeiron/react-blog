@@ -19,9 +19,9 @@
 ## About The Project
 <div align='left'>
   
-<img src="https://github.com/papeiron/react-blog/assets/151983680/6e0856be-9511-445c-9f8d-b60d8cd32ef3" width="600" height="330">
+<img src="https://github.com/papeiron/react-blog/assets/151983680/6e0856be-9511-445c-9f8d-b60d8cd32ef3" width="700" height="370">
 <br/>
-<img src="https://github.com/papeiron/react-blog/assets/151983680/348dddcb-c772-4b18-8754-559e38e62f75" width="600" height="330">
+<img src="https://github.com/papeiron/react-blog/assets/151983680/348dddcb-c772-4b18-8754-559e38e62f75" width="700" height="370">
 </div>
 
 <!-- ![supasnap-2024-04-16-05 54 35](https://github.com/papeiron/react-blog/assets/151983680/348dddcb-c772-4b18-8754-559e38e62f75) -->
@@ -63,7 +63,7 @@
    ```
 
 ## Database Schema
-![image](https://github.com/papeiron/react-blog/assets/151983680/2196b842-479c-4062-85a3-c1b2ad91209c)
+<img src='https://github.com/papeiron/react-blog/assets/151983680/2196b842-479c-4062-85a3-c1b2ad91209c' width='525' height='450'/>
 
 
 
