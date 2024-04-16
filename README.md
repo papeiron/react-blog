@@ -1,30 +1,101 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/othneildrew/Best-README-Template">
+    <img src="https://reactts-blog.netlify.app/logo.png" alt="Logo" width="80" height="80">
+  </a>
 
-Currently, two official plugins are available:
+  <h3 align="center">React Blog</h3>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+  <p align="center">
+    A blog app built with React and Supabase.
+    <br />
+    <a href="reactts-blog.netlify.app">View Demo</a>
+  </p>
+</div>
 
-## Expanding the ESLint configuration
+<!-- ABOUT THE PROJECT -->
+## About The Project
+![supasnap-2024-04-16-06 10 01](https://github.com/papeiron/react-blog/assets/151983680/6e0856be-9511-445c-9f8d-b60d8cd32ef3)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+![supasnap-2024-04-16-05 54 35](https://github.com/papeiron/react-blog/assets/151983680/348dddcb-c772-4b18-8754-559e38e62f75)
 
-- Configure the top-level `parserOptions` property like this:
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+## Usage
+![f13ec368-cc5c-4767-bdd9-bb75283e6cc9](https://github.com/papeiron/react-blog/assets/151983680/4e549542-e582-433b-9e1c-82bcd1c14927)
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+
+## Built With
+
+* [![React][React.js]][React-url]
+* [![TypeScript][TypeScript.com]][TypeScript-url]
+* [![Supabase][Supabase.com]][Supabase-url]
+* [![StyledComponents][StyledComponents.com]][StyledComponents-url]
+* [![ReactHookForm][ReactHookForm.com]][ReactHookForm-url]
+* [![ReactRouter][ReactRouter.com]][ReactRouter-url]
+
+
+## Getting Started
+
+### Installation
+
+1. Get a free API Key at [https://supabase.com](https://supabase.com)
+2. Clone the repo
+   ```sh
+   git clone https://github.com/papeiron/react-blog.git
+   ```
+3. Install NPM packages
+   ```sh
+   npm install
+   ```
+4. Enter your API in `.env`
+   ```js
+   const API_KEY = 'ENTER YOUR KEY';
+   const API_URL = 'ENTER YOUR URL';
+   ```
+
+## Database Schema
+![image](https://github.com/papeiron/react-blog/assets/151983680/2196b842-479c-4062-85a3-c1b2ad91209c)
+
+
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
+[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
+[forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
+[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
+[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
+[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
+[issues-url]: https://github.com/othneildrew/Best-README-Template/issues
+[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
+[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://linkedin.com/in/othneildrew
+
+
+[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[React-url]: https://reactjs.org/
+
+[TypeScript.com]: https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white
+[TypeScript-url]: https://www.typescriptlang.org
+
+[StyledComponents.com]: https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white
+[StyledComponents-url]: https://styled-components.com
+
+[Supabase.com]: https://img.shields.io/badge/Supabase-181818?style=for-the-badge&logo=supabase&logoColor=white
+[Supabase-url]: supabase.com
+
+[ReactHookForm.com]: https://img.shields.io/badge/React%20Hook%20Form-%23EC5990.svg?style=for-the-badge&logo=reacthookform&logoColor=white
+[ReactHookForm-url]: https://react-hook-form.com
+
+[ReactRouter.com]: https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white
+[ReactRouter-url]: https://reactrouter.com/en/main
+
+
+
+
+
